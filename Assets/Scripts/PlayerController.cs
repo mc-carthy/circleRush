@@ -30,11 +30,12 @@ public class PlayerController : BallController {
 	}
 
 	private void OnTriggerEnter2D (Collider2D col) {
-		Debug.Log ("Collision!");
 		if (col.gameObject.tag == "lapLine") {
 			gm.score++;
-			Debug.Log (gm.score.ToString ());
 			gm.UpdateScore ();
+		} else if (col.gameObject.tag == "enemy") {
+			Debug.Log ("Game Over!");
+			gm.GameOver ();
 		}
 	}
 }
