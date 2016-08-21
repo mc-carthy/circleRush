@@ -14,7 +14,7 @@ public class EnemyController : BallController {
 			dir = -1f;
 		}
 		speed *= dir;
-		enemyCircle = FindCircle ("enemyCircle");
+		FindCircle("enemyCircle");
 	}
 
 

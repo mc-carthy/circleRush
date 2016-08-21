@@ -6,9 +6,11 @@ public class PlayerController : BallController {
 	public float speedDelta = 0.1f;
 
 	private CircleGenerator playerCircle;
+	private GameManager gm;
 
 	private void Start () {
-		playerCircle = FindCircle ("playerCircle");
+		FindCircle("playerCircle");
+		gm = FindObjectOfType<GameManager> ();
 	}
 
 
@@ -25,5 +27,14 @@ public class PlayerController : BallController {
 			speed += speedDelta;
 		}
 		speed = Mathf.Clamp (speed, 0f, 5f);
+	}
+
+	private void OnTriggerEnter2D (Collider2D col) {
+		Debug.Log ("Collision!");
+		if (col.gameObject.tag == "lapLine") {
+			gm.score++;
+			Debug.Log (gm.score.ToString ());
+			gm.UpdateScore ();
+		}
 	}
 }

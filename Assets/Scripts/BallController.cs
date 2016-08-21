@@ -12,22 +12,18 @@ public class BallController : MonoBehaviour {
 	protected float xOff, yOff;
 
 
-	protected CircleGenerator FindCircle (string circleTag) {
+	protected void FindCircle (string circleTag) {
 		CircleGenerator circle;
 		circleGens = GameObject.FindObjectsOfType<CircleGenerator> ();
 		foreach (CircleGenerator circleGen in circleGens) {
 			if (circleGen.gameObject.tag == circleTag) {
 				circle = circleGen;
-
 				xOff = circle.xOff;
 				yOff = circle.yOff;
 				xRad = circle.xRad;
 				yRad = circle.yRad;
-
-				return circle;
 			}
 		}
-		return nullCircle;
 	}
 
 	protected void FollowCircle () {
