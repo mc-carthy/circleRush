@@ -3,13 +3,13 @@ using System.Collections;
 
 public class BallController : MonoBehaviour {
 
-	public float xRad, yRad;
 	public float speed = 1f;
-	public float xOff, yOff;
 
 	protected CircleGenerator[] circleGens;
 	protected CircleGenerator nullCircle;
 	protected float xPos, yPos, angle;
+	protected float xRad, yRad;
+	protected float xOff, yOff;
 
 
 	protected CircleGenerator FindCircle (string circleTag) {
