@@ -7,6 +7,7 @@ public class PlayerController : BallController {
 
 	private CircleGenerator playerCircle;
 	private GameManager gm;
+	private bool isGameOver;
 
 	private void Start () {
 		FindCircle("playerCircle");
@@ -15,7 +16,9 @@ public class PlayerController : BallController {
 
 
 	private void Update () {
-		AlterSpeed ();
+		if (!isGameOver) {
+			AlterSpeed ();
+		}
 		FollowCircle ();
 	}
 		
@@ -34,8 +37,9 @@ public class PlayerController : BallController {
 			gm.score++;
 			gm.UpdateScore ();
 		} else if (col.gameObject.tag == "enemy") {
-			Debug.Log ("Game Over!");
 			gm.GameOver ();
+			isGameOver = true;
+			speed = 0;
 		}
 	}
 }

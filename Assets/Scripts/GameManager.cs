@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
@@ -13,6 +14,12 @@ public class GameManager : MonoBehaviour {
 		InstantiateNewEnemy ();
 	}
 
+	private void Update () {
+		if (Input.GetKeyDown (KeyCode.R)) {
+			ReloadScene ();
+		}
+	}
+
 	public void UpdateScore () {
 		scoreText.text = score.ToString ();
 		if (score % 5 == 0 && score > 0) {
@@ -21,12 +28,13 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void GameOver () {
-		score = 0;
-		UpdateScore ();
 	}
 
 	private void InstantiateNewEnemy () {
 		Instantiate (enemy, transform.position + Vector3.up * 10f, Quaternion.identity);
 	}
 
+	private void ReloadScene() {
+		SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+	}
 }
